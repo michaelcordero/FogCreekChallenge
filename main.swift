@@ -5,6 +5,10 @@
 //  Created by Michael Cordero on 2/9/18.
 //  Copyright © 2018 codec software. All rights reserved.
 //
+// Author's note: line 30 may be confusing, because the collection starts out as an
+// dictionary, but after the sorted() operation, the collection is turned into an array.
+//[Rationale for High Order Functions on Collections that return Arrays]
+//(https://github.com/apple/swift/blob/master/docs/StdlibRationales.rst#high-order-functions-on-collections-return-arrays)
 
 /*
  Fog Creek challenge
@@ -14,21 +18,20 @@
 
 import Foundation
 
+// variable declarations
 let text: String = Input.value
-let alphabet: String = "abcdefghijklmnopqrstuvwxyz_"
-let zeros: [Int] = Array(repeating: 0, count: alphabet.count)   //placeholder values
-var alphabet_count_map: [Character : Int] = Dictionary(uniqueKeysWithValues: zip(alphabet.map( { $0 } ), zeros  ) )
+let characters: String = "abcdefghijklmnopqrstuvwxyz_"
+let zeros: [Int] = Array(repeating: 0, count: characters.count)   //placeholder values
+var character_occurrence_map: [Character : Int] = Dictionary(uniqueKeysWithValues: zip(characters.map( { $0 } ), zeros  ) )
 
-
-for Character in text.map( { $0 }) {
-    if alphabet_count_map[Character] != nil { alphabet_count_map[Character]! += 1 } else { continue }
-}
-
-var sorted: Array = alphabet_count_map.sorted(by: {  $0.value > $1.value } )
+// operations
+text.map( { $0 } ).forEach( { character_occurrence_map[$0]! += 1 } )
+var sorted: [(key: Character, value: Int)] = character_occurrence_map.sorted(by: {  $0.value > $1.value } )
 sorted.removeSubrange( sorted.index(where: { $0.key == "_" } )!..<sorted.count )
 let solution: String = String(sorted.map( { $0.key } ))
 
-print("Solution: " + solution)
+// output
+print("solution: " + solution)
 
 
 
