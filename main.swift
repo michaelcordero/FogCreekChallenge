@@ -5,7 +5,7 @@
 //  Created by Michael Cordero on 2/9/18.
 //  Copyright © 2018 codec software. All rights reserved.
 //
-// Author's note: line 30 may be confusing, because the collection starts out as an
+// Author's note: line 30 may be confusing, because the collection starts out as a
 // dictionary, but after the sorted() operation, the collection is turned into an array.
 //[Rationale for High Order Functions on Collections that return Arrays]
 //(https://github.com/apple/swift/blob/master/docs/StdlibRationales.rst#high-order-functions-on-collections-return-arrays)
